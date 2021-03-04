@@ -1,8 +1,11 @@
 {
   "expo": {
-    "name": "vibrant",
+    "name": "Vibrant",
+    "description": "A modern music player",
     "slug": "vibrant",
-    "version": "1.0.0",
+    "version": "0.1.0",
+    "privacy": "hidden",
+    "platforms": ["android"],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -11,22 +14,16 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "enabled": false
     },
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }
