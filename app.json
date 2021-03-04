@@ -5,12 +5,14 @@
     "slug": "vibrant",
     "version": "0.1.0",
     "privacy": "hidden",
-    "platforms": ["android"],
+    "platforms": [
+      "android"
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -21,9 +23,10 @@
     ],
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/icon-rounded.png",
+        "backgroundColor": "#48acf0"
+      },
+      "package": "com.vibrant"
     }
   }
 }
