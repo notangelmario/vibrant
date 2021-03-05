@@ -22,6 +22,7 @@
       "**/*"
     ],
     "android": {
+      "useNextNotificationsApi": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon-adaptive.png",
         "backgroundColor": "#48acf0"

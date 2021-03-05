@@ -4,8 +4,17 @@ import { StyleSheet, View, Image } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { List } from 'react-native-paper'
 import firebase from 'firebase/app'
-import TrackPlayer from 'react-native-track-player';
+import { Audio } from 'expo-av';
+import * as Notifications from 'expo-notifications'
 import 'firebase/firestore'
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false,
+    }),
+})
 
 export default function HomeScreen(props) {
     const { navigation } = props
@@ -15,6 +24,7 @@ export default function HomeScreen(props) {
 
 
     React.useMemo(()=>{
+        schedulePushNotification()
         const songsCollection = firebase.firestore().collection('songs')
 
         const songsFetched = []
@@ -40,7 +50,16 @@ export default function HomeScreen(props) {
                     <List.Item
                         key={idx}
                         title={song.title}
-                        onPress={()=>playSong(idx, "https://firebasestorage.googleapis.com/v0/b/vibrant-official.appspot.com/o/songs%2Fslchld%20-%20she%20likes%20spring%2C%20I%20prefer%20winter.-mgDsu7xAeWk.mp3?alt=media&token=c399e7dc-3e2a-40df-a4f2-c512367960b2", song.data().title, song.data().cover, song.data().artist)}
+                        onPress={async ()=>{
+                            Audio.setAudioModeAsync({
+                                staysActiveInBackground: true
+                            })
+
+                            const { sound: playbackObject } = await Audio.Sound.createAsync(
+                                { uri: 'https://firebasestorage.googleapis.com/v0/b/vibrant-official.appspot.com/o/songs%2Fslchld%20-%20she%20likes%20spring%2C%20I%20prefer%20winter.-mgDsu7xAeWk.mp3?alt=media&token=c399e7dc-3e2a-40df-a4f2-c512367960b2' },
+                                { shouldPlay: true }
+                              );                              
+                        }}
                         description={song.artist}
                         left={()=><Image source={{uri: song.cover}} style={styles.songCover}/>}
                     />
@@ -61,19 +80,14 @@ const styles = StyleSheet.create({
     }
 })
 
-const playSong = async (id, url, title, cover, artist) => {
-    // Set up the player
-    await TrackPlayer.setupPlayer();
-
-    // Add a track to the queue
-    await TrackPlayer.add({
-        id: id,
-        url: url,
-        title: title,
-        artist: artist,
-        artwork: cover
+async function schedulePushNotification() {
+    await Notifications.scheduleNotificationAsync({
+        content: {
+            title: "You've got mail! 📬",
+            body: 'Here is the notification body',
+            data: { data: 'goes here' },
+        },
+        trigger: { seconds: 2 },
     });
-
-    // Start playing it
-    await TrackPlayer.play();
-};
+}
+  
