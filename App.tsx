@@ -1,68 +1,63 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { TransitionSpecs, CardStyleInterpolators ,createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer, DefaultTheme as DefaultThemeNav } from '@react-navigation/native';
+import { Button, Provider as PaperProvider, DefaultTheme as DefaultThemeMat } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Button, StatusBar, Text, View } from 'react-native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { StatusBar, View } from 'react-native';
 
-const Tab = createBottomTabNavigator()
-const Stack = createStackNavigator()
+import HomeScreen from './screens/Home'
+import SettingsScreen from './screens/Settings'
+
+const Tab = createMaterialBottomTabNavigator()
 
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({route}) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName: any;
+    <PaperProvider theme={theme}>
+      <NavigationContainer theme={theme}>
+        <Tab.Navigator
+          shifting
+          theme={theme}
+          barStyle={{backgroundColor: theme.colors.surface}}
+          screenOptions={({route}) => ({
+            tabBarIcon: ({ focused, color }) => {
+              let iconName: any;
 
-            switch (route.name) {
-              case 'Home':
-                iconName = focused ? 'musical-notes' : 'musical-notes-outline';
-                break;
-              case 'Settings':
-                iconName = focused ? 'settings' : 'settings-outline';
-                break;
-            }
+              switch (route.name) {
+                case 'Home':
+                  iconName = focused ? 'musical-notes' : 'musical-notes-outline';
+                  break;
+                case 'Settings':
+                  iconName = focused ? 'settings' : 'settings-outline';
+                  break;
+              }
 
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size + (focused ? 5 : 0)} color={color} />;
-          },
-        })}
-      >
-        <Tab.Screen name="Home" component={HomeScreen} options={{title: 'Overview'}}/>
-        <Tab.Screen name="Settings" component={SettingsScreen}/>
-      </Tab.Navigator>
-      <StatusBar barStyle='dark-content' translucent backgroundColor='transparent'/>
-    </NavigationContainer>
+              return <Ionicons name={iconName} size={24} color={color} />;
+            },
+          })}
+        >
+          <Tab.Screen name="Home" component={HomeScreen}/>
+          <Tab.Screen name="Settings" component={SettingsScreen}/>
+        </Tab.Navigator>
+        <StatusBar barStyle='light-content' translucent backgroundColor='#00000025'/>
+      </NavigationContainer>
+    </PaperProvider>
   );
 }
 
-
-function HomeScreen(props: any) {
-  const { navigation } = props
-
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title='Go to details'
-        onPress={() => props.navigation.navigate('Details')}
-      />
-    </View>
-  );
-}
-
-function SettingsScreen(props: any) {
-  const { navigation } = props
-
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Settings Screen</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  );
+const theme: any = {
+  ...DefaultThemeNav,
+  ...DefaultThemeMat,
+  dark: false,
+  roundness: 20,
+  colors: {
+    ...DefaultThemeNav.colors,
+    ...DefaultThemeMat.colors,
+    primary: '#48acf0',
+    accent: '#61c9a8',
+    background: '#212121',
+    surface: '#323232',
+    text: '#e4e4e4'
+  }
 }
