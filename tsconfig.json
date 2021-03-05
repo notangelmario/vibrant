@@ -10,5 +10,4 @@
     "strict": true
   },
   "include": ["./components/**/*.ts", "./screens/**/*.ts"],
-  "exclude": ["node_modules", ".vscode"]
 }

@@ -12,8 +12,8 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "contain",
+      "backgroundColor": "#48acf0"
     },
     "updates": {
       "enabled": false
@@ -23,10 +23,12 @@
     ],
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon-rounded.png",
+        "foregroundImage": "./assets/icon-adaptive.png",
         "backgroundColor": "#48acf0"
       },
-      "package": "com.vibrant"
+      "package": "com.vibrant",
+      "googleServicesFile": "./assets/google-services.json",
+      "permissions": []
     }
   }
 }

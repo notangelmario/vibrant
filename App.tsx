@@ -5,6 +5,19 @@ import { Button, Provider as PaperProvider, DefaultTheme as DefaultThemeMat } fr
 import { Ionicons } from '@expo/vector-icons'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { StatusBar, View } from 'react-native';
+import firebase from 'firebase/app'
+
+if (!firebase.apps.length) {
+  firebase.initializeApp({
+    apiKey: "AIzaSyAnDxbHadfdQhfCaAKtQU0MBrGMvi0CI1I",
+    authDomain: "vibrant-official.firebaseapp.com",
+    projectId: "vibrant-official",
+    storageBucket: "vibrant-official.appspot.com",
+    messagingSenderId: "733632180969",
+    appId: "1:733632180969:web:334bc5eaebe1e8f07e3678"
+  })
+}
+
 
 import HomeScreen from './screens/Home'
 import SettingsScreen from './screens/Settings'
@@ -46,7 +59,7 @@ export default function App() {
   );
 }
 
-const theme: any = {
+export const theme: any = {
   ...DefaultThemeNav,
   ...DefaultThemeMat,
   dark: false,
