@@ -29,7 +29,7 @@ module.exports = {
 				},
 				extendConfig: (config) => {
 					config.output = {
-						filename: '[id].mauv.js',
+						filename: '[id].vibrant.js',
 						path: path.resolve(__dirname, 'build/'),
 					}
 					config.plugins.push(
