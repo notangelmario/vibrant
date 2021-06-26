@@ -1,8 +1,0 @@
-angelmario/vibrant/Application.java
- angelmario.vibrant.Application
-angelmario/vibrant/BuildConfig.java
- angelmario.vibrant.BuildConfig
-angelmario/vibrant/LauncherActivity.java
- angelmario.vibrant.LauncherActivity
-angelmario/vibrant/DelegationService.java
- angelmario.vibrant.DelegationService
