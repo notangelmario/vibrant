@@ -2,9 +2,8 @@ import '../styles/globals.css'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 
-export default function Vibrant({ Component, pageProps }: AppProps) {
-	return 
-	(
+function Vibrant({ Component, pageProps }: AppProps) {
+	return (
     	<>
         	<Head>
 				<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
@@ -21,3 +20,5 @@ export default function Vibrant({ Component, pageProps }: AppProps) {
     	</>
 	)
 }
+
+export default Vibrant
