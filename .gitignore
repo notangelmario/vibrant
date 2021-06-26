@@ -1,5 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# TWA
+/twa/app-release-*
+/twa/manifest-checksum.txt
+/twa/store_icon.png
+/twa/.gradle
+
 # dependencies
 /node_modules
 /.pnp
