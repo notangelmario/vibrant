@@ -4,6 +4,9 @@ import Head from 'next/head'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { Shadows } from '@material-ui/core/styles/shadows';
 import { CssBaseline } from '@material-ui/core';
+import { usePWAInstalled } from '../hooks/usePWAInstalled';
+import { useRouter } from 'next/router'
+import React from 'react';
 
 
 const theme = createTheme({
@@ -31,6 +34,15 @@ const theme = createTheme({
 });
 
 function Vibrant({ Component, pageProps }: AppProps) {
+	const pwaInstalled = usePWAInstalled()
+	const router = useRouter()
+
+	React.useMemo(()=>{
+		if (process.browser) {
+			if (!pwaInstalled && router.pathname !== '/install') router.push('/install')
+		}
+	}, [])
+
 	return (
     	<>
         	<Head>

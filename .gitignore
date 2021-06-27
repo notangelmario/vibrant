@@ -19,6 +19,7 @@
 /out/
 /public/sw.js
 /public/workbox-*
+*.map
 
 # production
 /build
