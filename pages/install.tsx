@@ -31,6 +31,7 @@ export default function Install() {
 						variant='contained'
 						size='large'
 						onClick={()=>promptToInstall()}
+                        disabled={!prompt}
 					>
                         Install
 					</Button>

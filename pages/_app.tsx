@@ -7,6 +7,7 @@ import { CssBaseline } from '@material-ui/core';
 import { usePWAInstalled } from '../hooks/usePWAInstalled';
 import { useRouter } from 'next/router'
 import React from 'react';
+import Snacks from '../components/Snacks';
 
 
 const theme = createTheme({
@@ -33,18 +34,45 @@ const theme = createTheme({
 	}
 });
 
+export const ACTIONS = {
+	SNACKBAR: 'snackbar'
+}
+
+function reducer(state: any, action: any) {
+	switch(action.type) {
+		case ACTIONS.SNACKBAR:
+			return {
+				...state, 
+				snackbar: {
+					open: !!action.payload,
+					message: action.payload ? action.payload : state.snackbar.message
+				}
+			}
+	}
+}
+
+const initialState = {
+	snackbar: {
+		open: false,
+		message: ''	
+	}
+}
+
+export const GlobalContext = React.createContext({} as any)
+
 function Vibrant({ Component, pageProps }: AppProps) {
+	const [state, dispatch] = React.useReducer(reducer, initialState)
 	const pwaInstalled = usePWAInstalled()
 	const router = useRouter()
 
 	React.useMemo(()=>{
-		if (process.browser) {
+		if (process.browser && process.env.NODE_ENV !== 'development') {
 			if (!pwaInstalled && router.pathname !== '/install') router.push('/install')
 		}
 	}, [])
 
 	return (
-    	<>
+    	<GlobalContext.Provider value={{state, dispatch}}>
         	<Head>
 				<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 				<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
@@ -62,8 +90,9 @@ function Vibrant({ Component, pageProps }: AppProps) {
 			<ThemeProvider theme={theme}>
 				<CssBaseline/>
         		<Component {...pageProps} />
+				<Snacks/>
 			</ThemeProvider>
-    	</>
+    	</GlobalContext.Provider>
 	)
 }
 

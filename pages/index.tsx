@@ -12,13 +12,12 @@ export default function Home() {
 			>
 				<Grid item>
 					<Typography variant='h2' sx={{color: theme=>theme.palette.primary.main}}>
-						Welcome to Vibrant!
+						Good job!
 					</Typography>
 				</Grid>
 				<Grid item>
 					<Typography gutterBottom>
-						Vibrant is a private music app bringing you the features that you miss from
-						other music players.
+						Vibrant is now installed. You can now sign in.
 					</Typography>
 				</Grid>
 			</Grid>
