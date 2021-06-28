@@ -45,7 +45,8 @@ const theme = createTheme({
 
 export const ACTIONS = {
 	SNACKBAR: 'snackbar',
-	_SET_USER: '_set_user'
+	_SET_USER: '_set_user',
+	SET_LOADING: 'set_loading'
 }
 
 function reducer(state: any, action: any) {
@@ -63,6 +64,11 @@ function reducer(state: any, action: any) {
 			...state,
 			user: action.payload
 		}
+	case ACTIONS.SET_LOADING:
+		return {
+			...state,
+			loading: action.payload
+		}
 	}
 }
 
@@ -71,7 +77,8 @@ const initialState = {
 		open: false,
 		message: ''	
 	},
-	user: null
+	user: null,
+	loading: true
 }
 
 export const GlobalContext = React.createContext({} as any)
@@ -79,7 +86,6 @@ export const GlobalContext = React.createContext({} as any)
 function Vibrant({ Component, pageProps }: AppProps) {
 	const [state, dispatch] = React.useReducer(reducer, initialState)
 	const pwaInstalled = usePWAInstalled()
-	const [ready, setReady] = React.useState(false)
 	const [] = useAddToHomescreenPrompt()
 	const router = useRouter()
 
@@ -93,10 +99,10 @@ function Vibrant({ Component, pageProps }: AppProps) {
 			if (user) {
 				dispatch({type: ACTIONS._SET_USER, payload: user})
 			} else {
-				dispatch({ type: ACTIONS._SET_USER, payload: {} })
 				if (pwaInstalled) router.replace('/signin')
+				dispatch({ type: ACTIONS._SET_USER, payload: null})
 			}
-			setReady(true)
+			dispatch({type: ACTIONS.SET_LOADING, payload: false})
 		})
 
 	}, [])
@@ -120,7 +126,7 @@ function Vibrant({ Component, pageProps }: AppProps) {
         	</Head>
 			<ThemeProvider theme={theme}>
 				<CssBaseline/>
-				<LoadingScreen on={!ready}/>
+				<LoadingScreen on={state.loading}/>
 				<Component {...pageProps} />
 				<Snacks/>
 			</ThemeProvider>

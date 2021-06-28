@@ -22,11 +22,14 @@ export default function SignIn() {
 	const signInGoogle = () => {
 		var provider = new fb.auth.GoogleAuthProvider();
 
+		dispatch({type: ACTIONS.SET_LOADING, payload: true})
 		fb.auth().signInWithPopup(provider).then(()=>{
 			router.replace('/')
-		}).catch((err)=>
-			dispatch({type: ACTIONS.SNACKBAR, payload: err.message})
-		)
+			dispatch({ type: ACTIONS.SET_LOADING, payload: false })
+		}).catch((err)=>{
+			dispatch({ type: ACTIONS.SNACKBAR, payload: err.message })
+			dispatch({ type: ACTIONS.SET_LOADING, payload: false })
+		})
 	}
 
 	return (
