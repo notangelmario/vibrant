@@ -5,6 +5,7 @@ import { GlobalContext } from './_app'
 import fb from '../config/fb'
 
 
+// TODO: Create a home screen
 export default function Home() {
 	const {state, dispatch} = React.useContext(GlobalContext)
 	
@@ -25,15 +26,6 @@ export default function Home() {
 					<Typography gutterBottom>
 						Vibrant is now installed. You can now sign in.
 					</Typography>
-				</Grid>
-				<Grid item>
-					<Button
-						variant='contained'
-						color='error'
-						onClick={()=>fb.auth().signOut()}
-					>
-						Sign out
-					</Button>
 				</Grid>
 			</Grid>
 		</Container>

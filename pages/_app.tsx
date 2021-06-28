@@ -11,6 +11,8 @@ import Snacks from '../components/Snacks';
 import fb from '../config/fb';
 import { useAddToHomescreenPrompt } from '../hooks/useAdd2HS';
 import LoadingScreen from '../components/LoadingScreen';
+import BottomNav from '../components/BottomNav';
+import TopNav from '../components/TopNav';
 
 
 const theme = createTheme({
@@ -78,7 +80,8 @@ const initialState = {
 		message: ''	
 	},
 	user: null,
-	loading: true
+	loading: true,
+	appVersion: 'v0.1.0'
 }
 
 export const GlobalContext = React.createContext({} as any)
@@ -127,7 +130,9 @@ function Vibrant({ Component, pageProps }: AppProps) {
 			<ThemeProvider theme={theme}>
 				<CssBaseline/>
 				<LoadingScreen on={state.loading}/>
+				<TopNav/>
 				<Component {...pageProps} />
+				{state.user && !state.loading && <BottomNav/>}
 				<Snacks/>
 			</ThemeProvider>
     	</GlobalContext.Provider>
