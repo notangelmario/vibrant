@@ -120,12 +120,7 @@ function Vibrant({ Component, pageProps }: AppProps) {
         	</Head>
 			<ThemeProvider theme={theme}>
 				<CssBaseline/>
-				<Fade
-					in={!ready}
-					appear={false}
-				>
-					<LoadingScreen/>
-				</Fade>
+				<LoadingScreen on={!ready}/>
 				<Component {...pageProps} />
 				<Snacks/>
 			</ThemeProvider>
