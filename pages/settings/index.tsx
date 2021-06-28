@@ -6,45 +6,45 @@ import InfoIcon from '@material-ui/icons/InfoOutlined'
 import fb from '../../config/fb'
 
 export default function Settings() {
-    const { state, dispatch } = React.useContext(GlobalContext)
+	const { state, dispatch } = React.useContext(GlobalContext)
 
-    return (
-        <Container>
-            <Grid
-                sx={{ padding: theme => `${theme.spacing(2)} 0` }}
-                container
-                direction='column'
-                spacing={2}
-            >
-                <Grid item>
-                    <Typography variant='h2' sx={{ color: theme => theme.palette.primary.main }}>
+	return (
+		<Container>
+			<Grid
+				sx={{ padding: theme => `${theme.spacing(2)} 0` }}
+				container
+				direction='column'
+				spacing={2}
+			>
+				<Grid item>
+					<Typography variant='h2' sx={{ color: theme => theme.palette.primary.main }}>
                         Settings
 					</Typography>
-                </Grid>
-                <Grid item>
-                    <List component={Paper} variant='outlined'>
-                        {/* TODO: Add account settings */}
-                        <NextLink href='/settings/about'>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <InfoIcon/>
-                                </ListItemIcon>
-                                <ListItemText primary='About'/>
-                            </ListItemButton>
-                        </NextLink>
-                    </List>
-                </Grid>
-                <Grid item>
-                    <Button
-                        variant='contained'
-                        color='error'
-                        fullWidth
-                        onClick={() => fb.auth().signOut()}
-                    >
+				</Grid>
+				<Grid item>
+					<List component={Paper} variant='outlined'>
+						{/* TODO: Add account settings */}
+						<NextLink href='/settings/about'>
+							<ListItemButton>
+								<ListItemIcon>
+									<InfoIcon/>
+								</ListItemIcon>
+								<ListItemText primary='About'/>
+							</ListItemButton>
+						</NextLink>
+					</List>
+				</Grid>
+				<Grid item>
+					<Button
+						variant='contained'
+						color='error'
+						fullWidth
+						onClick={() => fb.auth().signOut()}
+					>
                         Sign out
 					</Button>
-                </Grid>
-            </Grid>
-        </Container>
-    )
+				</Grid>
+			</Grid>
+		</Container>
+	)
 }
