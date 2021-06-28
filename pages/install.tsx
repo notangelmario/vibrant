@@ -1,10 +1,17 @@
 import { Avatar, Container, Grid, Typography, Box, CardContent, Card, Icon, ButtonBase, CardActionArea, Fade, Grow, Button } from '@material-ui/core'
-import Image from 'next/image'
+import {useRouter} from 'next/router'
 import React from 'react'
 import { useAddToHomescreenPrompt } from '../hooks/useAdd2HS'
 
 export default function Install() {
 	const [prompt, promptToInstall] = useAddToHomescreenPrompt()
+	const router = useRouter()
+
+	React.useEffect(()=>{
+		prompt?.userChoice.then((choice)=>{
+			if (choice.outcome === 'accepted') router.replace('/signin')
+		})
+	}, [prompt?.userChoice])
 
 	return (
 		<Container>
@@ -31,11 +38,18 @@ export default function Install() {
 						variant='contained'
 						size='large'
 						onClick={()=>promptToInstall()}
-                        disabled={!prompt}
+						disabled={!prompt}
 					>
                         Install
 					</Button>
 				</Grid>
+				{ !prompt && 
+					<Grid item>
+						<Typography variant='caption' color='ActiveCaption'>
+							* Vibrant is not yet available on your device
+						</Typography>
+					</Grid>
+				}
 				<Grid item>
 					<Card sx={{ backgroundColor: theme => theme.palette.error.main }}>
 						<CardContent>

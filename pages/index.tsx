@@ -1,7 +1,13 @@
-import { Avatar, Container, Grid, Typography, Box, CardContent, Card, Icon } from '@material-ui/core'
-import Image from 'next/image'
+import { Container, Grid, Typography, Box, CardContent, Card, Icon, Button } from '@material-ui/core'
+import React from 'react'
+import {useRouter} from 'next/router'
+import { GlobalContext } from './_app'
+import fb from '../config/fb'
+
 
 export default function Home() {
+	const {state, dispatch} = React.useContext(GlobalContext)
+	
 	return (
 		<Container>
 			<Grid
@@ -19,6 +25,15 @@ export default function Home() {
 					<Typography gutterBottom>
 						Vibrant is now installed. You can now sign in.
 					</Typography>
+				</Grid>
+				<Grid item>
+					<Button
+						variant='contained'
+						color='error'
+						onClick={()=>fb.auth().signOut()}
+					>
+						Sign out
+					</Button>
 				</Grid>
 			</Grid>
 		</Container>
