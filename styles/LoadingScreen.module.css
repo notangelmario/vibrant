@@ -1,0 +1,12 @@
+.avatar {
+    animation: spin 3s ease-in-out infinite
+}
+
+@keyframes spin {
+    from, to {
+        transform: rotate(10deg)
+    }
+    50% {
+        transform: rotate(-10deg)
+    }
+}
