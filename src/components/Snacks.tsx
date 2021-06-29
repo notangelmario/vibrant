@@ -1,7 +1,7 @@
 import {IconButton, Slide, Snackbar} from '@material-ui/core'
 import { TransitionProps } from '@material-ui/core/transitions'
 import React from 'react'
-import { GlobalContext, ACTIONS } from '../pages/_app'
+import { GlobalContext, ACTIONS } from '../App'
 import CloseIcon from '@material-ui/icons/Close';
 
 export default function Snacks() {

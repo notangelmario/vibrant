@@ -1,11 +1,10 @@
 import { Avatar, Container, Grid, Typography, Box, CardContent, Card, TextField, ListItemText, ListItem, ListItemIcon, Dialog, DialogTitle, Button, InputAdornment } from '@material-ui/core'
-import Image from 'next/image'
 import React from 'react';
 import GoogleSignInButton from '../components/GoogleSignInButton';
 import InfoIcon from '@material-ui/icons/InfoOutlined'
 import fb from '../config/fb'
-import { ACTIONS, GlobalContext } from './_app';
-import { useRouter } from 'next/router';
+import { ACTIONS, GlobalContext } from '../App';
+import { useHistory } from 'react-router-dom';
 
 declare global {
     interface Window { 
@@ -17,7 +16,7 @@ declare global {
 
 export default function SignIn() {
 	const { state, dispatch } = React.useContext(GlobalContext)
-	const router = useRouter()
+	const router = useHistory()
 
 	const signInGoogle = () => {
 		var provider = new fb.auth.GoogleAuthProvider();
@@ -26,7 +25,7 @@ export default function SignIn() {
 		fb.auth().signInWithPopup(provider).then(()=>{
 			router.replace('/')
 			dispatch({ type: ACTIONS.SET_LOADING, payload: false })
-		}).catch((err)=>{
+		}).catch((err: any)=>{
 			dispatch({ type: ACTIONS.SNACKBAR, payload: err.message })
 			dispatch({ type: ACTIONS.SET_LOADING, payload: false })
 		})

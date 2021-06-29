@@ -1,15 +1,15 @@
 import { Avatar, Container, Grid, Typography, Box, CardContent, Card, Icon, ButtonBase, CardActionArea, Fade, Grow, Button } from '@material-ui/core'
-import {useRouter} from 'next/router'
+import { useHistory } from 'react-router-dom'
 import React from 'react'
 import { useAddToHomescreenPrompt } from '../hooks/useAdd2HS'
 
 export default function Install() {
 	const [prompt, promptToInstall] = useAddToHomescreenPrompt()
-	const router = useRouter()
+	const history = useHistory()
 
 	React.useEffect(()=>{
 		prompt?.userChoice.then((choice)=>{
-			if (choice.outcome === 'accepted') router.replace('/signin')
+			if (choice.outcome === 'accepted') history.replace('/signin')
 		})
 	}, [prompt?.userChoice])
 

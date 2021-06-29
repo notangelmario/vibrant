@@ -1,12 +1,10 @@
 import { Container, Grid, Typography, Box, CardContent, Card, Icon, Button, Fade } from '@material-ui/core'
 import React from 'react'
-import {useRouter} from 'next/router'
-import { GlobalContext } from './_app'
-import fb from '../config/fb'
+import { GlobalContext } from '../App'
 
 
 // TODO: Create a home screen
-export default function Home() {
+export default function HomePage() {
 	const {state, dispatch} = React.useContext(GlobalContext)
 	
 	return (

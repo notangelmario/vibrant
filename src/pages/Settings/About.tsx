@@ -1,11 +1,8 @@
 import { Container, Grid, Typography, Box, CardContent, Card, Icon, Button, ListItemText, ListItemIcon, ListItem, List, Paper, Grow } from '@material-ui/core'
 import React from 'react'
-const platform = require('platform')
-import { GlobalContext } from '../_app'
-import InfoIcon from '@material-ui/icons/InfoOutlined'
-import fb from '../../config/fb'
+import { GlobalContext } from '../../App'
 
-export default function Settings() {
+export default function AboutPage() {
 	const { state, dispatch } = React.useContext(GlobalContext)
 
 	return (
@@ -27,10 +24,10 @@ export default function Settings() {
 							<ListItemText primary='App version' secondary={state.appVersion}/>
 						</ListItem>
 						<ListItem divider>
-							<ListItemText primary='Browser name' secondary={process.browser && window.navigator.userAgent} />
+							<ListItemText primary='Browser name' secondary={window.navigator.userAgent} />
 						</ListItem>
 						<ListItem>
-							<ListItemText primary='Platform' secondary={process.browser && window.navigator.platform} />
+							<ListItemText primary='Platform' secondary={window.navigator.platform} />
 						</ListItem>
 					</List>
 				</Grid>

@@ -2,12 +2,13 @@ import React from "react";
 import { AppBar, BottomNavigation, BottomNavigationAction, Toolbar } from "@material-ui/core";
 import HomeIcon from '@material-ui/icons/HomeOutlined'
 import SettingsIcon from '@material-ui/icons/SettingsOutlined'
-import { useRouter } from "next/router";
+import { useHistory, useLocation } from "react-router-dom";
 
 
 
 export default function BottomNav() {
-	const router = useRouter()
+	const history = useHistory()
+	const location = useLocation()
 
 	return (
 		<AppBar 
@@ -19,9 +20,9 @@ export default function BottomNav() {
 			}}
 		>
 			<BottomNavigation
-				value={router.pathname.split('/')[1]}
+				value={location.pathname.split('/')[1]}
 				onChange={(event, newValue) => {
-					router.push('/' + newValue)
+					history.push('/' + newValue)
 				}}
 			>
 				<BottomNavigationAction value='' label='Home' icon={<HomeIcon />} />
