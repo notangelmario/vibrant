@@ -10,7 +10,6 @@ export default function HomePage() {
 	return (
 		<Container>
 			<Grid
-				sx={{padding: theme => `${theme.spacing(2)} 0`}}
 				container
 				direction='column'
 				spacing={2}

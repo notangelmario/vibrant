@@ -8,7 +8,6 @@ import Snacks from './components/Snacks';
 import fb from './config/fb';
 import { useAddToHomescreenPrompt } from './hooks/useAdd2HS';
 import LoadingScreen from './components/LoadingScreen';
-import BottomNav from './components/BottomNav';
 import TopNav from './components/TopNav';
 
 import HomePage from './pages/Home'
@@ -83,7 +82,7 @@ const initialState = {
   },
   user: null,
   loading: true,
-  appVersion: 'v0.1.0'
+  appVersion: 'v0.2.0'
 }
 
 export const GlobalContext = React.createContext({} as any)
@@ -121,11 +120,10 @@ export default function Vibrant() {
         <TopNav />
         <Switch>
           <Route component={HomePage} exact path='/' />
-          <Route component={SettingsPage} exact path='/settings'/>
-          <Route component={SignInPage} exact path='/signin' />
-          <Route component={InstallPage} exact path='/install' />
+          <Route component={SettingsPage} path='/settings'/>
+          <Route component={SignInPage} path='/signin' />
+          <Route component={InstallPage} path='/install' />
         </Switch>
-        {state.user && !state.loading && <BottomNav />}
         <Snacks />
       </ThemeProvider>
     </GlobalContext.Provider>

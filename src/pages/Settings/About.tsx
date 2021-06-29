@@ -8,7 +8,6 @@ export default function AboutPage() {
 	return (
 		<Container>
 			<Grid
-				sx={{ padding: theme => `${theme.spacing(2)} 0` }}
 				container
 				direction='column'
 				spacing={2}
@@ -24,7 +23,7 @@ export default function AboutPage() {
 							<ListItemText primary='App version' secondary={state.appVersion}/>
 						</ListItem>
 						<ListItem divider>
-							<ListItemText primary='Browser name' secondary={window.navigator.userAgent} />
+							<ListItemText primary='User Agent' secondary={window.navigator.userAgent} />
 						</ListItem>
 						<ListItem>
 							<ListItemText primary='Platform' secondary={window.navigator.platform} />
