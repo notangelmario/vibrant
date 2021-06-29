@@ -1,4 +1,4 @@
-import { Container, Grid, Typography, Box, CardContent, Card, Icon, Button, ListItemText, ListItemIcon, ListItem, List, Paper, ListItemButton } from '@material-ui/core'
+import { Container, Grid, Typography, Box, CardContent, Card, Icon, Button, ListItemText, ListItemIcon, ListItem, List, Paper, ListItemButton, Grow } from '@material-ui/core'
 import React from 'react'
 import NextLink from 'next/link'
 import { GlobalContext } from '../_app'
@@ -18,7 +18,7 @@ export default function Settings() {
 			>
 				<Grid item>
 					<Typography variant='h2' sx={{ color: theme => theme.palette.primary.main }}>
-                        Settings
+					Settings
 					</Typography>
 				</Grid>
 				<Grid item>
@@ -41,7 +41,7 @@ export default function Settings() {
 						fullWidth
 						onClick={() => fb.auth().signOut()}
 					>
-                        Sign out
+					Sign out
 					</Button>
 				</Grid>
 			</Grid>

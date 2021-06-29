@@ -91,6 +91,13 @@ function Vibrant({ Component, pageProps }: AppProps) {
 	const pwaInstalled = usePWAInstalled()
 	const [] = useAddToHomescreenPrompt()
 	const router = useRouter()
+	const [pageReady, setPageReady] = React.useState(true)
+
+	React.useEffect(()=> {
+		router.events.on('routeChangeStart', ()=>setPageReady(false))
+		router.events.on('routeChangeComplete', ()=>setPageReady(true))
+	}, [router])
+
 
 	React.useMemo(()=>{
 		if (process.browser) {
@@ -131,7 +138,13 @@ function Vibrant({ Component, pageProps }: AppProps) {
 				<CssBaseline/>
 				<LoadingScreen on={state.loading}/>
 				<TopNav/>
+				{process.browser ? 
+				<Fade in={pageReady}>
+					<Component {...pageProps} />
+				</Fade>
+				: 
 				<Component {...pageProps} />
+				}
 				{state.user && !state.loading && <BottomNav/>}
 				<Snacks/>
 			</ThemeProvider>

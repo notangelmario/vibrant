@@ -1,4 +1,4 @@
-import { Container, Grid, Typography, Box, CardContent, Card, Icon, Button, ListItemText, ListItemIcon, ListItem, List, Paper } from '@material-ui/core'
+import { Container, Grid, Typography, Box, CardContent, Card, Icon, Button, ListItemText, ListItemIcon, ListItem, List, Paper, Grow } from '@material-ui/core'
 import React from 'react'
 const platform = require('platform')
 import { GlobalContext } from '../_app'
@@ -18,7 +18,7 @@ export default function Settings() {
 			>
 				<Grid item>
 					<Typography variant='h2' sx={{ color: theme => theme.palette.primary.main }}>
-                        About
+						About
 					</Typography>
 				</Grid>
 				<Grid item>
